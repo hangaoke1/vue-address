@@ -35,7 +35,7 @@
 <script>
 import chinaData from './assets/china-data.js'
 export default {
-  name: 'x-address',
+  name: 'vue-address',
   model: {
     prop: 'show',
     event: 'on-change'

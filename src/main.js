@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
-import XAddress from './lib/index'
+import VueAddress from './lib/index'
 
-Vue.use(XAddress)
+Vue.use(VueAddress)
 
 window.gvm = new Vue({
   el: '#app',

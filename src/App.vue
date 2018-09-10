@@ -1,10 +1,11 @@
 <template>
   <div id="app">
-    <button class="address-demo--button" @click="showAddress = !showAddress">选择地址</button>
+    <button class="address-demo--button"
+            @click="showAddress = !showAddress">选择地址</button>
     <p class="address-demo--select">{{select}}</p>
-    <x-address v-model="showAddress"
-               :default-address="defaultAddress"
-               @on-select="handleOnSelect"></x-address>
+    <vue-address v-model="showAddress"
+                 :default-address="defaultAddress"
+                 @on-select="handleOnSelect"></vue-address>
   </div>
 </template>
 
@@ -27,23 +28,23 @@ export default {
 </script>
 
 <style lang="less">
-  #app {
-    text-align: center;
-  }
-  .address-demo--button {
-    display: inline-block;
-    width: 200px;
-    height: 40px;
-    margin-top: 100px;
-    line-height: 40px;
-    font-size: 14px;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    background: #3f86ff;
-  }
-  .address-demo--select {
-    font-size: 14px;
-  }
+#app {
+  text-align: center;
+}
+.address-demo--button {
+  display: inline-block;
+  width: 200px;
+  height: 40px;
+  margin-top: 100px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background: #3f86ff;
+}
+.address-demo--select {
+  font-size: 14px;
+}
 </style>

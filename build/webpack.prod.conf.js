@@ -10,14 +10,14 @@ var VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   entry: {
-    'x-address': './src/lib/index.js'
+    'vue-address': './src/lib/index.js'
   },
   externals: {},
   output: {
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/dist/',
     filename: '[name].js',
-    library: 'x-address',
+    library: 'vue-address',
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
@@ -85,7 +85,7 @@ module.exports = {
         }
       }),
 
-      new ExtractTextPlugin('x-address.css'),
+      new ExtractTextPlugin('vue-address.css'),
 
       new webpack.optimize.UglifyJsPlugin({
         sourceMap: enableSourceMap,
