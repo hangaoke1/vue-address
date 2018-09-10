@@ -1,0 +1,14 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "selector-list-comma-newline-after": null,
+    "rule-empty-line-before": null,
+    "font-family-no-missing-generic-family-keyword": null,
+    "declaration-empty-line-before": null,
+    "no-descending-specificity": null,
+    "no-missing-end-of-source-newline": null,
+    "comment-empty-line-before": null,
+    "declaration-colon-newline-after": null,
+    "indentation": null
+  }
+}
