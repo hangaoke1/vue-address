@@ -3,8 +3,9 @@
     <div class="address"
          v-show="showDialog">
       <div class="address-dialog"
-            @click="closeAddress"
-            v-show="showDialog"></div>
+           @click.stop="closeAddress"
+           @touchmove.prevent="noopfn"
+           v-show="showDialog"></div>
       <transition name="address-slide">
         <div class="address-wrap"
              v-show="showSlide">
@@ -12,18 +13,19 @@
           <div class="address-tab">
             <ul class="address-tab--list">
               <li v-for="(item, index) in select"
-                  @click="changeTab(index)"
+                  @click.stop="changeTab(index)"
                   :class="{'address-tab--active': index === activeTab}"
                   :key="item.code">{{item.name}}</li>
             </ul>
           </div>
-          <section class="address-content">
+          <section class="address-content"
+                   ref="addressContent">
             <ul>
               <li v-for="(value, key) in showList"
                   :key="key"
                   class="address-content--item"
                   :class="{'address-item--active': key === select[activeTab].code}"
-                  @click="changeSelect(value, key)">{{value}}</li>
+                  @click.stop="changeSelect(value, key)">{{value}}</li>
             </ul>
           </section>
         </div>
@@ -81,11 +83,18 @@ export default {
     }
   },
   methods: {
+    noopfn () { },
+    fixIosScrolling () {
+      this.$nextTick(() => {
+        this.$refs.addressContent.scrollTop = 1
+      })
+    },
     closeAddress () {
       this.$emit('on-change')
     },
     changeTab (index) {
       this.activeTab = index
+      this.fixIosScrolling()
     },
     changeSelect (val, key) {
       let item = {
@@ -105,6 +114,7 @@ export default {
         this.$emit('on-select', JSON.parse(JSON.stringify(this.select)))
         this.$emit('on-change')
       }
+      this.fixIosScrolling()
     },
     getListByCode (code) {
       return chinaData[code] || {}
