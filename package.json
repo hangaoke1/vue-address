@@ -22,7 +22,9 @@
       "stylelint"
     ]
   },
-  "dependencies": {},
+  "dependencies": {
+    "better-scroll": "^1.13.2"
+  },
   "browserslist": [
     "> 1%",
     "last 2 versions",

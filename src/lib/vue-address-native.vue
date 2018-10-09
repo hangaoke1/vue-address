@@ -20,7 +20,7 @@
           </div>
           <section class="address-content"
                    ref="addressContent">
-            <ul class="address-content--list content">
+            <ul>
               <li v-for="(value, key) in showList"
                   :key="key"
                   class="address-content--item"
@@ -35,11 +35,7 @@
 </template>
 
 <script>
-/**
- * better-scroll版本
- */
 import chinaData from './assets/china-data.js'
-import BScroll from 'better-scroll'
 export default {
   name: 'vue-address',
   model: {
@@ -52,7 +48,6 @@ export default {
   },
   data () {
     return {
-      scroll: null,
       showSlide: false,
       showDialog: false,
       activeTab: 0,
@@ -89,15 +84,17 @@ export default {
   },
   methods: {
     noopfn () { },
-    refreshScroll () {
-      this.scroll.refresh()
+    fixIosScrolling () {
+      this.$nextTick(() => {
+        this.$refs.addressContent.scrollTop = 1
+      })
     },
     closeAddress () {
       this.$emit('on-change')
     },
     changeTab (index) {
       this.activeTab = index
-      this.refreshScroll()
+      this.fixIosScrolling()
     },
     changeSelect (val, key) {
       let item = {
@@ -117,7 +114,7 @@ export default {
         this.$emit('on-select', JSON.parse(JSON.stringify(this.select)))
         this.$emit('on-change')
       }
-      this.refreshScroll()
+      this.fixIosScrolling()
     },
     getListByCode (code) {
       return chinaData[code] || {}
@@ -159,11 +156,6 @@ export default {
   },
   created () {
     this.initAddress()
-  },
-  mounted () {
-    this.scroll = new BScroll(this.$refs.addressContent, {
-      click: true
-    })
   }
 }
 </script>
@@ -243,7 +235,8 @@ ul {
 }
 .address-content {
   height: 300px;
-  overflow: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .address-content--item {
   font-size: 12px;
