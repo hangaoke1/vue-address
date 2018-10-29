@@ -6,6 +6,7 @@
     <vue-address v-model="showAddress"
                  :default-address="defaultAddress"
                  @on-select="handleOnSelect"></vue-address>
+    <p v-for="item in 100" :key="item">{{item}}</p>
   </div>
 </template>
 

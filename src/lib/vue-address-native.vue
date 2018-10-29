@@ -18,7 +18,7 @@
                   :key="item.code">{{item.name}}</li>
             </ul>
           </div>
-          <section class="address-content"
+          <scroll-container class="address-content"
                    ref="addressContent">
             <ul>
               <li v-for="(value, key) in showList"
@@ -27,7 +27,7 @@
                   :class="{'address-item--active': key === select[activeTab].code}"
                   @click.stop="changeSelect(value, key)">{{value}}</li>
             </ul>
-          </section>
+          </scroll-container>
         </div>
       </transition>
     </div>
@@ -36,8 +36,12 @@
 
 <script>
 import chinaData from './assets/china-data.js'
+import scrollContainer from './scroll-container'
 export default {
   name: 'vue-address',
+  components: {
+    scrollContainer
+  },
   model: {
     prop: 'show',
     event: 'on-change'
@@ -86,7 +90,7 @@ export default {
     noopfn () { },
     fixIosScrolling () {
       this.$nextTick(() => {
-        this.$refs.addressContent.scrollTop = 1
+        this.$refs.addressContent.$el.scrollTop = 1
       })
     },
     closeAddress () {
