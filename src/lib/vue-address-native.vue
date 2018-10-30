@@ -9,8 +9,8 @@
       <transition name="address-slide">
         <div class="address-wrap"
              v-show="showSlide">
-          <header class="address-tip">收货地址</header>
-          <div class="address-tab">
+          <header class="address-tip" @touchmove.prevent="noopfn">收货地址</header>
+          <div class="address-tab" @touchmove.prevent="noopfn">
             <ul class="address-tab--list">
               <li v-for="(item, index) in select"
                   @click.stop="changeTab(index)"

@@ -71,6 +71,8 @@ export default {
         this.showDialog = val
         setTimeout(() => {
           this.showSlide = val
+          // display: none会导致better-scroll初始化异常
+          this.refreshScroll()
         }, 100)
       } else {
         this.showSlide = val
@@ -90,7 +92,9 @@ export default {
   methods: {
     noopfn () { },
     refreshScroll () {
-      this.scroll.refresh()
+      this.$nextTick(() => {
+        this.scroll.refresh()
+      })
     },
     closeAddress () {
       this.$emit('on-change')
