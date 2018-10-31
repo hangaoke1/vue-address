@@ -55,6 +55,6 @@ export default {
 
 #### vue-address 事件
 
-名称|说明|回调参数||
--|-|-|-|-
-| on-select | 选择地址后触发 | Array<地址>|
+名称|说明|回调参数|
+-|-|-
+| on-select | 选择地址后触发 | Array<地址> |
