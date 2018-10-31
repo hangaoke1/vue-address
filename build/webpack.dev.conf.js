@@ -8,6 +8,8 @@ var enableSourceMap = false
 var VueLoaderPlugin = require('vue-loader/lib/plugin')
 var opn = require('opn')
 var PORT = process.env.PORT || '8080'
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 opn(`http://localhost:${PORT}`)
 module.exports = {
   entry: './src/main.js',
@@ -71,7 +73,10 @@ module.exports = {
     extensions: ['*', '.js', '.vue', '.json']
   },
   devServer: {
-    historyApiFallback: true,
+    contentBase: path.resolve(__dirname, 'dist'),
+    historyApiFallback: {
+      index: '/dist/'
+    },
     noInfo: true,
     overlay: true,
     host: '0.0.0.0',
@@ -89,6 +94,11 @@ module.exports = {
         cache: true,
         // 正则匹配想要 styleLint 监测的文件
         files: ['src/styles/*.l?(e|c)ss', 'src/**/*.vue']
+      }),
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: 'index.html',
+        inject: true
       }),
       new FriendlyErrorsPlugin()
     ]
