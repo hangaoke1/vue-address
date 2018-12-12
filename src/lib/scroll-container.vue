@@ -29,7 +29,7 @@ export default {
   mounted () {
     this.initEvent()
   },
-  destroyed () {
+  beforeDestroy () {
     const container = this.$refs.scrollContainer
     container.removeEventListener('touchstart', this.touchStart)
     container.removeEventListener('touchmove', this.touchMove)
