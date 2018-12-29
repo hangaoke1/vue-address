@@ -5,7 +5,7 @@ demo地址: http://demo.hgaoke.com/address/index.html
 
 TODO: 添加插件式调用
 
-使用示例
+### 使用示例
 ```javascript
 import Vue from 'vue'
 import VueAddress from 'vue-address'
