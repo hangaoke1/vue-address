@@ -57,4 +57,4 @@ export default {
 
 名称|说明|回调参数|
 -|-|-
-| on-select | 选择地址后触发 | Array<地址> |
+| on-select | 选择地址后触发事件 | Array<地址> |
